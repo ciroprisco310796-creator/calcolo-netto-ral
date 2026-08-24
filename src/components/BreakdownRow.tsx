@@ -5,7 +5,7 @@ interface BreakdownRowProps {
   value: number;
   sign?: "plus" | "minus" | "neutral";
   emphasis?: boolean;
-  hint?: string;
+  hint?: string | undefined;
 }
 
 export function BreakdownRow({
