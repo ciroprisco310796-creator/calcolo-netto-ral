@@ -30,6 +30,23 @@ export const Route = createFileRoute("/")({
 
 const MAX_RAL = 100_000_000;
 
+/** Display-only: groups the integer part with Italian thousand separators. */
+function formatRalInput(raw: string): string {
+  const cleaned = raw.replace(/[^\d.,-]/g, "");
+  const negative = cleaned.startsWith("-");
+  const body = negative ? cleaned.slice(1) : cleaned;
+
+  const commaIndex = body.indexOf(",");
+  const intPart = (commaIndex === -1 ? body : body.slice(0, commaIndex)).replace(
+    /\./g,
+    "",
+  );
+  const decimals = commaIndex === -1 ? null : body.slice(commaIndex + 1).replace(/[.,]/g, "");
+
+  const grouped = intPart === "" ? "" : intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return `${negative ? "-" : ""}${grouped}${decimals === null ? "" : `,${decimals}`}`;
+}
+
 function Index() {
   const [input, setInput] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -100,12 +117,18 @@ function Index() {
               inputMode="decimal"
               autoComplete="off"
               value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Es. 40.000 €"
+              onChange={(e) => setInput(formatRalInput(e.target.value))}
+              placeholder="Es. 40.000"
               aria-invalid={error !== null}
               aria-describedby={error ? "ral-error" : undefined}
-              className="tabular h-12 w-full rounded-lg border border-input bg-surface px-4 text-base outline-none transition-shadow placeholder:text-muted-foreground focus:border-ring focus:ring-2 focus:ring-ring/25"
+              className="tabular h-12 w-full rounded-lg border border-input bg-surface pl-4 pr-9 text-base outline-none transition-shadow placeholder:text-muted-foreground focus:border-ring focus:ring-2 focus:ring-ring/25"
             />
+            <span
+              aria-hidden
+              className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-base text-muted-foreground"
+            >
+              €
+            </span>
           </div>
           <button
             type="submit"
@@ -195,9 +218,10 @@ function Results({ result }: { result: SalaryBreakdown }) {
           />
           {hasWedgeDeduction ? (
             <BreakdownRow
-              label="Riduzione cuneo fiscale"
+              label="Detrazione aggiuntiva — cuneo fiscale"
               value={result.taxWedgeDeduction}
               sign="plus"
+              hint="Tra 32.000 € e 40.000 € di imponibile la detrazione di 1.000 € si riduce progressivamente."
             />
           ) : null}
           <BreakdownRow label="IRPEF netta" value={result.netIrpef} sign="minus" />
@@ -213,7 +237,7 @@ function Results({ result }: { result: SalaryBreakdown }) {
           />
           {hasCashBonus ? (
             <BreakdownRow
-              label="Beneficio fiscale esente"
+              label="Somma esente — riduzione cuneo fiscale"
               value={result.taxWedgeCashBonus}
               sign="plus"
               hint="Somma esente: non riduce l'IRPEF, si aggiunge al netto."
@@ -227,14 +251,15 @@ function Results({ result }: { result: SalaryBreakdown }) {
         />
       </div>
 
-      <div className="card-surface mt-3 p-5 sm:p-6">
-        <h2 className="text-base font-semibold">Totali</h2>
-        <div className="mt-2 divide-y divide-border">
-          <BreakdownRow label="Totale imposte" value={result.totalTaxes} />
+      <div className="mt-3 rounded-xl border border-border bg-muted/40 px-5 py-3 sm:px-6">
+        <h2 className="text-sm font-medium text-muted-foreground">Totali</h2>
+        <div className="mt-1 divide-y divide-border">
+          <BreakdownRow label="Totale imposte" value={result.totalTaxes} compact />
           <BreakdownRow
             label="Totale trattenute sulla RAL"
             value={result.totalDeductions}
             hint="Contributi previdenziali + imposte"
+            compact
           />
         </div>
       </div>

@@ -6,6 +6,7 @@ interface BreakdownRowProps {
   sign?: "plus" | "minus" | "neutral";
   emphasis?: boolean;
   hint?: string | undefined;
+  compact?: boolean;
 }
 
 export function BreakdownRow({
@@ -14,6 +15,7 @@ export function BreakdownRow({
   sign = "neutral",
   emphasis = false,
   hint,
+  compact = false,
 }: BreakdownRowProps) {
   const prefix = sign === "minus" ? "− " : sign === "plus" ? "+ " : "";
   const valueColor =
@@ -25,20 +27,20 @@ export function BreakdownRow({
 
   return (
     <div
-      className={`flex items-baseline justify-between gap-4 py-3 ${
+      className={`flex items-baseline justify-between gap-4 ${compact ? "py-2" : "py-3"} ${
         emphasis ? "border-t border-border pt-4" : ""
       }`}
     >
       <div className="min-w-0">
         <p
-          className={`text-sm ${emphasis ? "font-semibold text-foreground" : "text-muted-foreground"}`}
+          className={`${compact ? "text-xs" : "text-sm"} ${emphasis ? "font-semibold text-foreground" : "text-muted-foreground"}`}
         >
           {label}
         </p>
         {hint ? <p className="mt-0.5 text-xs text-muted-foreground">{hint}</p> : null}
       </div>
       <p
-        className={`tabular shrink-0 text-sm ${emphasis ? "text-base font-semibold text-foreground" : valueColor}`}
+        className={`tabular shrink-0 ${compact ? "text-xs" : "text-sm"} ${emphasis ? "text-base font-semibold text-foreground" : valueColor}`}
       >
         {prefix}
         {formatEuro(value)}

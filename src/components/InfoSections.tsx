@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import { useState, type ReactNode } from "react";
 
 function Section({
@@ -17,14 +18,15 @@ function Section({
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-muted/60 sm:px-6"
+        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-muted/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 sm:px-6"
       >
         <span className="text-base font-semibold">{title}</span>
-        <span
-          aria-hidden
-          className={`text-muted-foreground transition-transform duration-200 ${open ? "rotate-45" : ""}`}
-        >
-          +
+        <span className="flex items-center gap-2 text-xs text-muted-foreground">
+          <span className="hidden sm:inline">{open ? "Chiudi" : "Apri"}</span>
+          <ChevronDown
+            aria-hidden
+            className={`size-4 shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          />
         </span>
       </button>
       {open ? (
@@ -110,7 +112,7 @@ const flowSteps = [
 export function InfoSections() {
   return (
     <div className="space-y-3">
-      <Section title="Come viene calcolato?" defaultOpen>
+      <Section title="Come viene calcolato?">
         <ol className="space-y-1">
           {flowSteps.map((step, i) => (
             <li key={step} className="flex items-center gap-3">
