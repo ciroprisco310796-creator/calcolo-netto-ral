@@ -218,9 +218,10 @@ function Results({ result }: { result: SalaryBreakdown }) {
           />
           {hasWedgeDeduction ? (
             <BreakdownRow
-              label="Riduzione cuneo fiscale"
+              label="Detrazione aggiuntiva — cuneo fiscale"
               value={result.taxWedgeDeduction}
               sign="plus"
+              hint="Tra 32.000 € e 40.000 € di imponibile la detrazione di 1.000 € si riduce progressivamente."
             />
           ) : null}
           <BreakdownRow label="IRPEF netta" value={result.netIrpef} sign="minus" />
