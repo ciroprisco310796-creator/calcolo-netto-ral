@@ -104,7 +104,8 @@ describe("input parsing", () => {
     expect(parseRalInput("40.000")).toBe(40000);
     expect(parseRalInput("40000")).toBe(40000);
     expect(parseRalInput("40.000,50")).toBe(40000.5);
-    expect(parseRalInput("40 000 €")).toBe(null);
+    expect(parseRalInput("40 000 €")).toBe(40000);
+    expect(parseRalInput("-5000")).toBe(null);
     expect(parseRalInput("abc")).toBe(null);
     expect(parseRalInput("")).toBe(null);
   });
