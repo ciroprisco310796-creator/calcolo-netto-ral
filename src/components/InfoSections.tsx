@@ -112,7 +112,7 @@ const flowSteps = [
 export function InfoSections() {
   return (
     <div className="space-y-3">
-      <Section title="Come viene calcolato?" defaultOpen>
+      <Section title="Come viene calcolato?">
         <ol className="space-y-1">
           {flowSteps.map((step, i) => (
             <li key={step} className="flex items-center gap-3">
