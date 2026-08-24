@@ -121,8 +121,14 @@ function Index() {
               placeholder="Es. 40.000"
               aria-invalid={error !== null}
               aria-describedby={error ? "ral-error" : undefined}
-              className="tabular h-12 w-full rounded-lg border border-input bg-surface px-4 text-base outline-none transition-shadow placeholder:text-muted-foreground focus:border-ring focus:ring-2 focus:ring-ring/25"
+              className="tabular h-12 w-full rounded-lg border border-input bg-surface pl-4 pr-9 text-base outline-none transition-shadow placeholder:text-muted-foreground focus:border-ring focus:ring-2 focus:ring-ring/25"
             />
+            <span
+              aria-hidden
+              className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-base text-muted-foreground"
+            >
+              €
+            </span>
           </div>
           <button
             type="submit"
