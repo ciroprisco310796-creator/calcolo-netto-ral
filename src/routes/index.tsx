@@ -30,6 +30,23 @@ export const Route = createFileRoute("/")({
 
 const MAX_RAL = 100_000_000;
 
+/** Display-only: groups the integer part with Italian thousand separators. */
+function formatRalInput(raw: string): string {
+  const cleaned = raw.replace(/[^\d.,-]/g, "");
+  const negative = cleaned.startsWith("-");
+  const body = negative ? cleaned.slice(1) : cleaned;
+
+  const commaIndex = body.indexOf(",");
+  const intPart = (commaIndex === -1 ? body : body.slice(0, commaIndex)).replace(
+    /\./g,
+    "",
+  );
+  const decimals = commaIndex === -1 ? null : body.slice(commaIndex + 1).replace(/[.,]/g, "");
+
+  const grouped = intPart === "" ? "" : intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return `${negative ? "-" : ""}${grouped}${decimals === null ? "" : `,${decimals}`}`;
+}
+
 function Index() {
   const [input, setInput] = useState("");
   const [error, setError] = useState<string | null>(null);
