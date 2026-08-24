@@ -45,7 +45,7 @@ const assumptions = [
   "Nessun altro reddito",
   "Nessun familiare fiscalmente a carico",
   "Nessuna agevolazione fiscale personale",
-  "Aliquota contributiva standardizzata secondo il modello (9,19%)",
+  "Quota contributiva a carico del dipendente assunta al 9,19% come semplificazione del caso standard. L'aliquota effettiva può variare in base a settore, inquadramento e regime previdenziale.",
   "13 mensilità",
   "Nessun welfare, fringe benefit o premio",
   "Nessun fondo pensione",
@@ -65,6 +65,7 @@ const limitations = [
   "Non modella datori di lavoro multipli o redditi aggiuntivi",
   "Non modella il TFR",
   "Non modella gli effetti di timing del payroll né i conguagli fiscali",
+  "Il contributo previdenziale aggiuntivo dell'1% oltre la soglia 2026 di 56.224 € è modellato su base annuale. Nella gestione payroll reale l'applicazione avviene con logiche mensili e relativi conguagli.",
 ];
 
 const sources = [
@@ -90,9 +91,8 @@ const sources = [
     href: "https://www.comune.milano.it/aree-tematiche/tributi/addizionale-comunale-irpef",
   },
   {
-    label:
-      "Riduzione del cuneo fiscale — Agenzia delle Entrate, FAQ su commi 4-9 L. 207/2024",
-    href: "https://www.agenziaentrate.gov.it/portale/risposte-alle-domande-piu-frequenti-cu-2026",
+    label: "Riduzione del cuneo fiscale — Agenzia delle Entrate",
+    href: "https://infoprecompilata.agenziaentrate.gov.it/portale/semplificata-mod-lavoro-dipendente-e-pensioni",
   },
 ];
 
