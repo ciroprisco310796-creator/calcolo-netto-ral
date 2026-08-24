@@ -77,11 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Calcolatore netto da RAL 2026" },
+      {
+        name: "description",
+        content:
+          "Stima deterministica del netto annuale e mensile da RAL per un dipendente residente a Milano.",
+      },
+      { property: "og:title", content: "Calcolatore netto da RAL 2026" },
+      {
+        property: "og:description",
+        content:
+          "Stima deterministica del netto annuale e mensile da RAL per un dipendente residente a Milano.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
