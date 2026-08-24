@@ -38,7 +38,14 @@ function Index() {
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    const value = parseRalInput(input);
+    const trimmed = input.trim();
+    if (trimmed.startsWith("-")) {
+      setError("La RAL deve essere un valore positivo maggiore di zero.");
+      setResult(null);
+      return;
+    }
+
+    const value = parseRalInput(trimmed);
 
     if (value === null) {
       setError("Inserisci un valore numerico valido, ad esempio 40.000.");
