@@ -237,7 +237,7 @@ function Results({ result }: { result: SalaryBreakdown }) {
           />
           {hasCashBonus ? (
             <BreakdownRow
-              label="Beneficio fiscale esente"
+              label="Somma esente — riduzione cuneo fiscale"
               value={result.taxWedgeCashBonus}
               sign="plus"
               hint="Somma esente: non riduce l'IRPEF, si aggiunge al netto."
@@ -251,14 +251,15 @@ function Results({ result }: { result: SalaryBreakdown }) {
         />
       </div>
 
-      <div className="card-surface mt-3 p-5 sm:p-6">
-        <h2 className="text-base font-semibold">Totali</h2>
-        <div className="mt-2 divide-y divide-border">
-          <BreakdownRow label="Totale imposte" value={result.totalTaxes} />
+      <div className="mt-3 rounded-xl border border-border bg-muted/40 px-5 py-3 sm:px-6">
+        <h2 className="text-sm font-medium text-muted-foreground">Totali</h2>
+        <div className="mt-1 divide-y divide-border">
+          <BreakdownRow label="Totale imposte" value={result.totalTaxes} compact />
           <BreakdownRow
             label="Totale trattenute sulla RAL"
             value={result.totalDeductions}
             hint="Contributi previdenziali + imposte"
+            compact
           />
         </div>
       </div>
