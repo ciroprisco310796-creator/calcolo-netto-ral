@@ -69,27 +69,33 @@ const limitations = [
 
 const sources = [
   {
-    label: "IRPEF 2026 — Ministero del Lavoro, Legge di Bilancio 2026",
-    href: "https://www.lavoro.gov.it/notizie/pagine/legge-di-bilancio-2026-le-principali-misure-lavoratori-imprese-e-famiglie",
+    label: "IRPEF 2026 — Legge di Bilancio 2026, Gazzetta Ufficiale",
+    href: "https://www.gazzettaufficiale.it/eli/id/2026/01/21/26A00149/SG",
   },
   {
-    label: "Detrazioni da lavoro dipendente — TUIR, art. 13",
-    href: "https://def.giustiziatributaria.gov.it/",
-  },
-  { label: "Contributi previdenziali — INPS", href: "https://www.inps.it/" },
-  {
-    label: "Addizionale regionale — Regione Lombardia",
-    href: "https://www.regione.lombardia.it/",
+    label:
+      "Detrazioni da lavoro dipendente (TUIR, art. 13) — Agenzia delle Entrate, Quadro RC",
+    href: "https://infoprecompilata.agenziaentrate.gov.it/portale/quadro-rc",
   },
   {
-    label: "Addizionale comunale — Comune di Milano",
+    label: "Aliquote contributive per lavoratori dipendenti — INPS",
+    href: "https://www.inps.it/it/it/inps-comunica/diritti-e-obblighi-in-materia-di-sicurezza-sociale-nell-unione-e/per-le-imprese/aliquote-contributive.html",
+  },
+  {
+    label: "Addizionale regionale all'IRPEF — Regione Lombardia",
+    href: "https://www.regione.lombardia.it/bollo-auto-e-tributi-regionali/red-addizionale-regionale-irpef",
+  },
+  {
+    label: "Addizionale comunale all'IRPEF — Comune di Milano",
     href: "https://www.comune.milano.it/aree-tematiche/tributi/addizionale-comunale-irpef",
   },
   {
-    label: "Riduzione del cuneo fiscale — Agenzia delle Entrate",
-    href: "https://infoprecompilata.agenziaentrate.gov.it/",
+    label:
+      "Riduzione del cuneo fiscale — Agenzia delle Entrate, FAQ su commi 4-9 L. 207/2024",
+    href: "https://www.agenziaentrate.gov.it/portale/risposte-alle-domande-piu-frequenti-cu-2026",
   },
 ];
+
 
 const flowSteps = [
   "RAL",
