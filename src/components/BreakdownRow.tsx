@@ -6,6 +6,7 @@ interface BreakdownRowProps {
   sign?: "plus" | "minus" | "neutral";
   emphasis?: boolean;
   hint?: string | undefined;
+  compact?: boolean;
 }
 
 export function BreakdownRow({
@@ -14,6 +15,7 @@ export function BreakdownRow({
   sign = "neutral",
   emphasis = false,
   hint,
+  compact = false,
 }: BreakdownRowProps) {
   const prefix = sign === "minus" ? "− " : sign === "plus" ? "+ " : "";
   const valueColor =
